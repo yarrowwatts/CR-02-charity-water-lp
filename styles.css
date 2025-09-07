@@ -76,9 +76,11 @@
       position: relative;
       min-height: 64vh;
       display: flex;
-      align-items: end;
-      /* Use the hero image set via inline style in HTML */
-      --hero-url: url('img/hero_image.jpg');
+      align-items: flex-end; /* Align content to the bottom */
+      /* Add top padding so more of the image (child's head) is visible */
+      padding-top: 50px;
+      /* Center the hero section content horizontally */
+      justify-content: center;
     }
     .hero::before {
       content: "";
@@ -91,21 +93,23 @@
       background-repeat: no-repeat;
     }
     .hero-inner {
+      /* Container for the hero text */
       position: relative;
       z-index: 1;
       max-width: 1200px;
       margin: 0 auto;
       padding: 3rem 1rem 2rem;
-    }
-    .hero .divider {
-      width: 15%;
-      height: 3px;
-      background: #fff;
-      margin: 12px 0;
+      /* Keep the container left-aligned */
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
     }
     .hero-copy {
-      max-width: 40ch;
-      text-align: left;
+      /* Center the text inside the container, but keep the container left-aligned */
+      max-width: 50ch;
+      text-align: center;
+      margin-left: 0;
+      margin-right: auto;
     }
     .headline {
       font-weight: 800;
