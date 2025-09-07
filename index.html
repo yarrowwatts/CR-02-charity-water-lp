@@ -42,11 +42,17 @@
       </nav>
       <div class="bar-right">
         <button class="hamburger" id="burger"><span class="lines"></span></button>
-        <!-- Give Clean Water button with waterdrop icon instead of emoji -->
-        <a class="donate-btn" href="#" id="openExpressTop" aria-label="Give Clean 💧">
-          <span class="btn-text"><span>Give</span><span>Clean</span></span>
-          <!-- Use SVG waterdrop icon, add margin for spacing -->
-          <img class="icon waterdrop-icon" src="img/waterdrop.svg" alt="" aria-hidden="true" />
+        <!-- Donate button: stack text and icon vertically, all centered, max 60x60px -->
+        <a class="donate-btn" href="#" id="openExpressTop" aria-label="Give Clean"
+           style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px; width: 60px; height: 60px; max-width: 60px; max-height: 60px; box-sizing: border-box; text-decoration: none;">
+          <!-- Smaller font for button text -->
+          <span class="btn-text" style="margin-bottom: 2px; font-size: 11px; line-height: 1.1; text-align: center;">
+            <span>Give</span><br>
+            <span>Clean</span>
+          </span>
+          <!-- Smaller icon image -->
+          <img class="icon waterdrop-icon" src="img/waterdrop.svg" alt="" aria-hidden="true"
+               style="width: 16px; height: 16px; margin-top: 2px;" />
         </a>
       </div>
     </div>
@@ -93,15 +99,26 @@
   </section>
 
   <aside class="donation" id="donation" aria-live="polite">
-    <div class="donation-head caps"><span class="head-center"><span class="zap-emoji" aria-hidden="true"></span><img class="zap-img" src="img/lightning_icon.png"  alt=""/> <span>Express Donation</span></span><button class="close" id="closeDonation" aria-label="Close">×</button></div>
+    <div class="donation-head caps">
+      <span class="head-center">
+        <span class="zap-emoji" aria-hidden="true"></span>
+        <img class="zap-img" src="img/lightning_icon.png"  alt=""/>
+        <span>Express Donation</span>
+      </span>
+      <button class="close" id="closeDonation" aria-label="Close">×</button>
+    </div>
     <div class="body">
-      <div class="pills" role="group" aria-label="Quick amounts">
+      <!-- Center the amount buttons using a simple flexbox for beginners -->
+      <div class="pills" role="group" aria-label="Quick amounts" style="display: flex; justify-content: center; gap: 8px; margin-bottom: 0;">
         <div class="pill-wrap"><button type="button" class="pill caps" data-amt="10" aria-pressed="true">$10</button></div>
-        <div class="pill-wrap"><button type="button" class="pill caps" data-amt="15" aria-pressed="false">$15</button></div>
         <div class="pill-wrap"><button type="button" class="pill caps" data-amt="20" aria-pressed="false">$20</button></div>
-        <div class="pill-wrap"><button type="button" class="pill caps" data-amt="50" aria-pressed="false">$50</button></div>
+        <div class="pill-wrap"><button type="button" class="pill caps" data-amt="40" aria-pressed="false">$40</button></div>
       </div>
-      <div class="pill-note-global" id="pillNote" aria-live="polite" style="text-align:center;font-size:.85rem;color:#111;margin:4px 0 12px"></div>
+      <!-- Microtext: smaller font, right under the amount buttons -->
+      <div id="donationMicroText" style="text-align:center;font-size:0.85em;color:#111;margin:8px 0 14px 0;">
+        Your $10 can give 1 person clean water for 3 months.
+      </div>
+      <div class="pill-note-global" id="pillNote" aria-live="polite" style="display:none"></div>
       <div class="cta">
         <button id="giveBtn" class="caps">Give Clean Water</button>
       </div>
@@ -111,7 +128,7 @@
         <div class="mark"><img src="img/venmo_icon.png" alt="Venmo"></div>
         <div class="mark"><img src="img/cashapp_icon.png" alt="Cash App"></div>
       </div>
-      <small class="tiny">100% of your gift funds clean water projects.</small>
+      <!-- microtext moved above, so remove from here -->
     </div>
   </aside>
   <!-- Donation tab: replace emoji with lightning icon image, center text -->
@@ -121,10 +138,7 @@
   </button>
 
   <main>
-    <section id="model"><h2>Section One</h2><p>Placeholder content here. Add image/text blocks.</p></section>
-    <section id="action"><h2>Section Two</h2><p>Placeholder content here.</p></section>
-    <section id="about"><h2>Section Three</h2><p>Placeholder content here.</p></section>
-    <section id="why"><h2>Section Four</h2><p>Placeholder content here.</p></section>
+    <!-- All main sections removed as requested -->
   </main>
 
   <footer>
@@ -181,13 +195,22 @@
 
     const pills=[...document.querySelectorAll('.pill')];
     let current=10;
+    // pill note is not used, so keep hidden
     const noteEl=document.getElementById('pillNote');
+    const microTextEl=document.getElementById('donationMicroText');
     function setActive(p){
       pills.forEach(x=>x.setAttribute('aria-pressed','false'));
       p.setAttribute('aria-pressed','true');
       current=Number(p.dataset.amt);
-      const map={10:'≈ 1 person gets clean water',15:'≈ 2 people get clean water',20:'≈ 3 people get clean water',50:'≈ 6 people get clean water'};
-      if(noteEl){ noteEl.textContent = map[current] || `≈ ${Math.max(1,Math.round(current/40))} people get clean water`; }
+      // Update micro text based on amount
+      if(microTextEl) {
+        if(current === 10) microTextEl.textContent = "Your $10 can give 1 person clean water for 3 months.";
+        else if(current === 20) microTextEl.textContent = "Your $20 can give 1 person clean water for 6 months.";
+        else if(current === 40) microTextEl.textContent = "Your $40 can give 1 person clean water for a year! 🎉";
+        else microTextEl.textContent = "";
+      }
+      // Hide pill note
+      if(noteEl){ noteEl.style.display = "none"; }
     }
     pills.forEach(p=>p.addEventListener('click',()=>setActive(p)));
     // initialize note for default selection

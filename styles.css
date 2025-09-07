@@ -1,200 +1,715 @@
 /* ============================
-    TOKENS & GLOBALS
-    ============================ */
-    :root{
-      --brand:#ffd11a;          /* Yellow */
-      --brand-ink:#111;         /* Dark ink on yellow */
-      --ink:#e8edf5;            /* Light text default */
-      --ink-darker:#cfd6e3;
-      --bg-body:#0b1c28;        /* Body backdrop */
-      --bg-header:#0f172a;      /* Header */
-      --bg-hero:#0b1c28;        /* Hero overlay lives on body */
-      --bg-news:#0a1322;        /* Newsletter stripe */
-      --bg-model:#0b162e;       /* Section colors */
-      --bg-action:#0c1a35;
-      --bg-about:#0c1f3f;
-      --bg-why:#0b2449;
-      --white:#fff;
-      --radius:5px;             /* cap ALL radii at 5px */
-      --shadow:0 10px 30px rgba(0,0,0,.28);
-    }
+   TOKENS & GLOBALS
+   ============================ */
+:root {
+  --brand: #ffd11a;
+  --brand-ink: #111;
+  --ink: #e8edf5;
+  --ink-darker: #cfd6e3;
+  --bg-body: #0b1c28;
+  --bg-header: #0f172a;
+  --bg-hero: #0b1c28;
+  --bg-news: #0a1322;
+  --bg-model: #0b162e;
+  --bg-action: #0c1a35;
+  --bg-about: #0c1f3f;
+  --bg-why: #0b2449;
+  --white: #fff;
+  --radius: 5px;
+  --shadow: 0 10px 30px rgba(0,0,0,.28);
+}
 
-    html,body{height:100%;max-width:100%;overflow-x:hidden}
-    body{margin:0;font-family:"Proxima Nova","Helvetica Neue",Arial,sans-serif;background:var(--bg-body);color:var(--ink);line-height:1.45}
-    a{text-decoration:none;color:inherit}
-    .caps{text-transform:uppercase;font-weight:600;letter-spacing:.25em}
+html, body {
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
-    /* ============================
-       HEADER (always-on donate, logo placeholder, carets)
-       ============================ */
-    .site-header{position:sticky;top:0;z-index:70;background:var(--bg-header);color:var(--white);box-shadow:0 2px 0 rgba(0,0,0,.12)}
-    .bar{display:flex;align-items:center;justify-content:space-between;padding:.75rem .9rem;max-width:1200px;margin:0 auto;gap:.5rem;flex-wrap:nowrap}
-    .bar-right{display:flex;align-items:center;gap:.5rem;flex-wrap:nowrap;white-space:nowrap}
-    .bar-right>*{flex-shrink:0}
-    .brand{display:flex;align-items:center;gap:.6rem;font-weight:700}
-    .brand .logo-placeholder{width:120px;max-width:36vw;height:28px;border:1px dashed rgba(255,255,255,.35);border-radius:var(--radius)}
-    .brand .logo-img{height:28px;width:auto;display:block}
-    .nav-links{display:none;align-items:center;gap:1rem}
-    .nav-links a{display:inline-flex;gap:.35rem;align-items:center;opacity:.95;font-weight:600;text-transform:uppercase;letter-spacing:.25em;white-space:nowrap;font-size:clamp(.7rem,1.2vw,.9rem)}
-    .donate-btn{background:var(--brand);color:var(--brand-ink);border:0;width:52px;height:52px;border-radius:var(--radius);display:grid;place-items:center;position:relative;font-weight:600}
-    .donate-btn .btn-text{display:grid;grid-auto-rows:min-content;gap:0;line-height:1.05;text-align:center;font-size:.54rem;letter-spacing:.06em;text-transform:uppercase;padding:6px 22px 10px 6px}
-    .donate-btn .icon{position:absolute;right:6px;top:6px;display:block;font-size:1rem;pointer-events:none}
-    .hamburger{background:transparent;border:1px solid var(--brand);width:52px;height:52px;display:grid;place-items:center;border-radius:var(--radius)}
-    .hamburger .lines{width:24px;height:2px;background:var(--brand);position:relative;border-radius:1px}
-    .hamburger .lines::before,.hamburger .lines::after{content:"";position:absolute;left:0;right:0;height:2px;background:var(--brand);border-radius:1px}
-    .hamburger .lines::before{top:-8px}.hamburger .lines::after{top:8px}
-    .mobile-menu{display:none;background:#0a1224;border-top:1px solid rgba(255,255,255,.08);padding:.5rem 0;text-align:center}
-    .mobile-menu a{display:flex;align-items:center;justify-content:center;width:100%;padding:1rem;border-bottom:1px solid rgba(255,255,255,.06);opacity:.95;text-align:center}
-    /* unify type for ALL items in hamburger (links + toggles) */
-    .mobile-menu a, .m-dd-toggle{position:relative;background:none;border:0;color:#fff;width:100%;padding:1rem;display:flex;align-items:center;justify-content:center;text-align:center;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);font:inherit;font-size:clamp(.9rem,2.8vw,1rem);text-transform:uppercase;letter-spacing:.25em;font-weight:600;line-height:1}
-    .m-dd-toggle .label{display:block;padding-right:28px}
-    .m-dd-toggle .caret{position:absolute;right:14px;top:50%;transform:translateY(-50%);margin-left:0}
-    .mobile-menu a:last-child{border-bottom:0}
-    .m-dd-toggle{background:none;border:0;color:#fff;width:100%;padding:1rem;display:flex;align-items:center;justify-content:center;text-align:center;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);font-weight:600;text-transform:uppercase;letter-spacing:.25em}
-    .m-dd-menu{display:none}
-    .m-dd-menu a{display:flex;align-items:center;justify-content:center;padding:.8rem 1rem;text-transform:none;letter-spacing:.02em;font-weight:600;font-size:clamp(.8rem,2.2vw,.9rem)}
-    .nav-links .dd-toggle .caret{margin-left:.4ch}
-    .mobile-signin{display:block;margin:12px auto;background:#fff;color:#000;border:0;padding:.75rem 1rem;border-radius:5px;width:90%;font-weight:700}
-    .open .mobile-menu{display:block}
-    @media(min-width:900px){.hamburger{display:none}.nav-links{display:flex}}
+body {
+  margin: 0;
+  font-family: "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-body);
+  color: var(--ink);
+  line-height: 1.45;
+}
 
-    /* dropdown menus (desktop hover, mobile JS optional) */
-    .nav-links .has-dd{position:relative}
-    .dd-toggle{background:none;border:0;color:inherit;font:inherit;display:inline-flex;align-items:center;gap:.35rem;opacity:.95;cursor:pointer;text-transform:uppercase;letter-spacing:.25em;white-space:nowrap;font-weight:600;font-size:clamp(.7rem,1.2vw,.9rem)}
-    .dd-toggle .caret{margin-left:.4ch}
-    .dd-menu{position:absolute;top:100%;left:0;background:#0a1224;border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:.4rem;display:none;min-width:220px;z-index:80}
-    .dd-menu a{display:block;padding:.5rem .75rem;border-radius:var(--radius)}
-    .dd-menu a:hover{background:rgba(255,255,255,.06)}
-    @media(min-width:900px){.nav-links .has-dd:hover .dd-menu{display:block}}
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-    /* ============================
-       HERO (left-aligned copy)
-       ============================ */
-    /* The hero section uses a background image set by the --hero-url variable.
-       The image will cover the entire section and resize with the screen. */
-    .hero {
-      position: relative;
-      min-height: 64vh;
-      display: flex;
-      align-items: flex-end; /* Align content to the bottom */
-      /* Add top padding so more of the image (child's head) is visible */
-      padding-top: 50px;
-      /* Center the hero section content horizontally */
-      justify-content: center;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      /* Add a dark gradient overlay for readability */
-      background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.6)), var(--hero-url);
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .hero-inner {
-      /* Container for the hero text */
-      position: relative;
-      z-index: 1;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 3rem 1rem 2rem;
-      /* Keep the container left-aligned */
-      display: flex;
-      justify-content: flex-start;
-      width: 100%;
-    }
-    .hero-copy {
-      /* Center the text inside the container, but keep the container left-aligned */
-      max-width: 50ch;
-      text-align: center;
-      margin-left: 0;
-      margin-right: auto;
-    }
-    .headline {
-      font-weight: 800;
-      font-size: clamp(34px,5.8vw,68px);
-      line-height: 1.05;
-      margin: .25em 0;
-    }
-    .impact {
-      margin-top: 1rem;
-      font-size: 1.05rem;
-    }
-    .impact strong {
-      color: var(--brand);
-    }
+.caps {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: .25em;
+}
 
-    /* ============================
-       NEWSLETTER (stationary stripe)
-       - shifts as a whole when donation opens on ≥640px
-       ============================ */
-    .newsletter-section{background:#000;padding:3.25rem 1rem;position:relative;overflow-x:hidden;border-top:0;border-bottom:0}
-    .newsletter-inner{max-width:1200px;margin:0 auto;display:grid;place-items:center}
-    .newsletter-card{display:grid;gap:14px;align-items:center;justify-items:center;background:transparent;border:none;border-radius:var(--radius);padding:22px;transition:transform .35s ease;max-width:760px;margin:0 auto;text-align:center}
-    .newsletter-heading{font-size:clamp(0.9rem, 1.6vw, 1.1rem);text-align:center;white-space:nowrap}
-    .newsletter{display:flex;flex-direction:row;gap:.6rem;align-items:center;justify-content:center;flex-wrap:nowrap}
-    .newsletter input{padding:.85rem 1rem;border-radius:var(--radius);border:1px solid rgba(255,255,255,.2);min-width:220px;width:clamp(220px, 40vw, 420px);background:#0f172a;color:#fff;font-size:.95rem}
-    .newsletter button{background:var(--brand);color:var(--brand-ink);border:0;padding:.85rem 1rem;border-radius:var(--radius);font-weight:600;font-size:.9rem;margin:0;display:inline-block}
-    @media(min-width:640px){ body.donation-open.donation-overlap .newsletter-card{ transform:translateX(260px);} }
+/* ============================
+   HEADER (logo, nav, donate)
+   ============================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  background: var(--bg-header);
+  color: var(--white);
+  box-shadow: 0 2px 0 rgba(0,0,0,.12);
+}
 
-    /* ============================
-       DONATION POPUP + STICKY TAB
-       ============================ */
-    .donation{position:fixed;left:18px;bottom:16px;width:min(92vw,380px);background:#fff;color:#111;border:1px solid #111;border-radius:var(--radius);box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.35s ease;z-index:60}
-    .donation.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .75rem .9rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: .5rem;
+  flex-wrap: nowrap;
+}
 
-    /* Header strip per reference (black bar) */
-    .donation-head{position:relative;background:#000;color:#fff;padding:.75rem 1rem;border-top-left-radius:var(--radius);border-top-right-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-weight:600;box-shadow:inset 0 0 0 1px #000;text-align:center}
-    .donation-head .head-center{display:inline-flex;align-items:center;gap:.5rem}
-    .donation-head .close{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:0;color:#fff;font-size:20px}
-    .donation-head .zap-img{height:22px;width:auto;display:block}
-    .donation-head .zap-emoji{margin-right:.35rem}
-    .donation-tab .zap-emoji{font-size:1rem;line-height:1}
+.bar-right {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
 
-    .donation .body{padding:16px;background:#fff}
-    .pills{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;justify-items:stretch;align-items:stretch;margin:8px 0 8px}
-    .pill-note{display:none}
-    .pill-wrap{display:flex;flex-direction:column;align-items:center;gap:4px}
-    .pill-note{font-size:.75rem;color:#111;min-height:1em;visibility:hidden}
-    .pill-wrap.active .pill-note{visibility:visible}
-    .pill{background:#fff;border:1px solid #111;color:#111;padding:.55rem .5rem;border-radius:var(--radius);font-weight:600;font-size:clamp(.75rem,2.2vw,.9rem);width:100%}
-    .pill[aria-pressed="true"],.pill:hover{background:var(--brand);color:var(--brand-ink);border-color:#111}
+.bar-right > * {
+  flex-shrink: 0;
+}
 
-    .cta button{width:100%;background:var(--brand);border:0;border-radius:var(--radius);padding:1rem 1.1rem;font-weight:600;color:var(--brand-ink);font-size:.95rem;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25)}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-weight: 700;
+}
 
-    .paymarks{display:flex;justify-content:center;gap:.5rem;margin:12px 0}
-    .paymarks img{height:20px;width:auto;display:block}
-    .mark{min-width:64px;height:32px;border:1px solid #111;border-radius:var(--radius);display:grid;place-items:center;background:#fff;padding:2px 6px}
+.brand .logo-placeholder {
+  width: 120px;
+  max-width: 36vw;
+  height: 28px;
+  border: 1px dashed rgba(255,255,255,.35);
+  border-radius: var(--radius);
+}
 
-    .tiny{display:block;margin-top:6px;color:#111;font-size:.85rem;text-align:center}
+.brand .logo-img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
 
-    /* Sticky donation tab: full-width, no bottom gap, yellow */
-    .donation-tab{position:fixed;left:16px;bottom:0;box-sizing:border-box;width:clamp(160px,22vw,300px);background:#000;color:#fff;border-style:solid;border-color:var(--brand);border-width:1px 1px 0 1px;display:flex;justify-content:center;align-items:center;gap:.5rem;padding:.55rem .75rem;font-weight:600;font-size:clamp(.72rem,1.8vw,.9rem);letter-spacing:.35em;border-radius:5px 5px 0 0;z-index:59;box-shadow:0 4px 16px rgba(0,0,0,.25);white-space:nowrap}
-    .donation-tab .zap-img{height:18px;width:auto;display:block}
-    .donation-tab .zap-img{height:18px;width:auto;display:block}
-    .donation-tab .zap-img{height:16px;width:auto;display:block}
-    .donation-tab .zap-img{height:18px;width:auto;display:block}
-    .donation.open + .donation-tab{display:none}
+.nav-links {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+}
 
-    /* ============================
-       CONTENT SECTIONS (distinct backgrounds)
-       ============================ */
-    main section{padding:3rem 1rem;border-bottom:1px solid rgba(255,255,255,.08)}
-    #model{background:var(--bg-model)}
-    #action{background:var(--bg-action)}
-    #about{background:var(--bg-about)}
-    #why{background:var(--bg-why)}
+.nav-links a {
+  display: inline-flex;
+  gap: .35rem;
+  align-items: center;
+  opacity: .95;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .25em;
+  white-space: nowrap;
+  font-size: clamp(.7rem,1.2vw,.9rem);
+}
 
-    /* ============================
-       FOOTER
-       ============================ */
-    footer{background:var(--bg-header);color:#ddd;padding:2rem 1rem}
-    .footer-inner{max-width:1100px;margin:0 auto;display:grid;gap:1.5rem}
-    .footer-columns{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
-    .footer-columns ul{list-style:none;padding:0}
-    .footer-columns li{margin:.5rem 0}
-    .footer-columns h4{font-weight:600}
-  .brand .logo-placeholder{width:120px;max-width:36vw;height:28px;border:1px dashed rgba(255,255,255,.35);border-radius:var(--radius);display:inline-block}
-  @media(min-width:768px){.newsletter-heading{white-space:nowrap;font-size:clamp(1rem,1.2vw,1.25rem)}}
-  @media(min-width:768px){.newsletter-heading{white-space:nowrap;font-size:clamp(1rem,1.2vw,1.25rem)}}
+/* ============================
+   DONATE BUTTON (HEADER)
+   ============================ */
+.donate-btn {
+  background: var(--brand);
+  color: var(--brand-ink);
+  border: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 52px;
+  max-height: 52px;
+  padding: 0;
+  font-weight: 600;
+}
+
+.donate-btn .btn-text {
+  display: block;
+  text-align: center;
+  font-size: 0.72em;
+  line-height: 1.1;
+  padding: 0;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.donate-btn .waterdrop-icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  max-width: 26px;
+  max-height: 26px;
+  margin: 4px auto 0 auto;
+}
+
+.donate-btn .icon {
+  position: static;
+  right: auto;
+  top: auto;
+  font-size: inherit;
+  pointer-events: none;
+}
+
+@media (max-width: 400px) {
+  .donate-btn {
+    width: 38px;
+    height: 38px;
+    max-width: 38px;
+    max-height: 38px;
+  }
+  .donate-btn .btn-text {
+    font-size: 0.62em;
+  }
+  .donate-btn .waterdrop-icon {
+    width: 15px;
+    height: 15px;
+    max-width: 16px;
+    max-height: 16px;
+  }
+}
+
+/* ============================
+   HAMBURGER MENU ICON
+   ============================ */
+.hamburger {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  border-radius: var(--radius);
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--brand);
+}
+
+.hamburger .lines {
+  width: 18px;
+  height: 2px;
+  background: var(--brand);
+  position: relative;
+  border-radius: 1px;
+}
+
+.hamburger .lines::before,
+.hamburger .lines::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--brand);
+  border-radius: 1px;
+}
+
+.hamburger .lines::before { top: -6px; }
+.hamburger .lines::after { top: 6px; }
+
+/* ============================
+   MOBILE MENU NAV LINK ALIGNMENT
+   ============================ */
+.mobile-menu a,
+.m-dd-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .25em;
+  padding: 1rem 0;
+  background: none;
+  border: 0;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+  appearance: none;
+}
+
+.mobile-menu a:last-child {
+  border-bottom: 0;
+}
+
+.m-dd-toggle .label {
+  display: inline-block;
+  padding-right: 0;
+  width: auto;
+  text-align: center;
+}
+
+.m-dd-toggle .caret {
+  position: static;
+  margin-left: 8px;
+  transform: none;
+  right: auto;
+  top: auto;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.m-dd-toggle, .mobile-menu a {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .25em;
+  padding: 1rem 0;
+  background: none;
+  border: 0;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 900px) {
+  .hamburger { display: none; }
+  .nav-links { display: flex; }
+  .site-header.open .mobile-menu { display: none !important; }
+}
+
+/* ============================
+   HERO SECTION
+   ============================ */
+.hero {
+  position: relative;
+  min-height: 64vh;
+  display: flex;
+  align-items: center;
+  padding-top: 50px;
+  justify-content: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.6)), var(--hero-url);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 1rem 2rem;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.hero-copy {
+  max-width: 50ch;
+  text-align: center;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.headline {
+  font-weight: 800;
+  font-size: clamp(34px,5.8vw,68px);
+  line-height: 1.05;
+  margin: 0.5em 0 0.7em 0;
+}
+
+.impact {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+}
+
+.impact strong {
+  color: var(--brand);
+}
+
+/* Responsive: Move headline to bottom of hero on small screens */
+@media (max-width: 700px) {
+  .hero {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: stretch;
+    min-height: 64vh;
+    padding-top: 90px;
+    padding-bottom: 0;
+  }
+  .hero-inner {
+    margin-top: auto;
+    margin-bottom: 0;
+    padding-top: 1.2rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
+/* ============================
+   NEWSLETTER SECTION
+   ============================ */
+.newsletter-section {
+  background: #000;
+  padding: 3.25rem 1rem;
+  position: relative;
+  overflow-x: hidden;
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.newsletter-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newsletter-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius);
+  padding: 22px;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-heading {
+  font-size: clamp(0.9rem, 1.6vw, 1.1rem);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.newsletter {
+  display: flex;
+  flex-direction: row;
+  gap: .6rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.newsletter input {
+  padding: .85rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,.2);
+  min-width: 220px;
+  width: clamp(220px, 40vw, 420px);
+  background: #0f172a;
+  color: #fff;
+  font-size: .95rem;
+}
+
+.newsletter button {
+  background: var(--brand);
+  color: var(--brand-ink);
+  border: 0;
+  padding: .85rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: .9rem;
+  margin: 0;
+  display: inline-block;
+}
+
+@media(min-width:640px) {
+  body.donation-open.donation-overlap .newsletter-card {
+    transform: translateX(260px);
+  }
+}
+
+/* ============================
+   DONATION POPUP + STICKY TAB
+   ============================ */
+.donation {
+  position: fixed;
+  left: 18px;
+  bottom: 16px;
+  width: min(92vw,380px);
+  background: #fff;
+  color: #111;
+  border: 1px solid #111;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  pointer-events: none;
+  transition: .35s ease;
+  z-index: 60;
+}
+
+.donation.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.donation-head {
+  position: relative;
+  background: #000;
+  color: #fff;
+  padding: .75rem 1rem;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px #000;
+  text-align: center;
+}
+
+.donation-head .head-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.donation-head .close {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  color: #fff;
+  font-size: 20px;
+}
+
+.donation-head .zap-img {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+.donation-head .zap-emoji {
+  margin-right: .35rem;
+}
+
+.donation-tab .zap-emoji {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.donation .body {
+  padding: 16px;
+  background: #fff;
+}
+
+/* Donation amount buttons - center and space */
+.pills {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.pill-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.pill {
+  background: #fff;
+  border: 1px solid #111;
+  color: #111;
+  padding: .55rem .5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 1.25rem;
+  width: 100%;
+}
+
+.pill[aria-pressed="true"],
+.pill:hover {
+  background: var(--brand);
+  color: var(--brand-ink);
+  border-color: #111;
+}
+
+#donationMicroText {
+  text-align: center;
+  font-size: 0.85em;
+  color: #111;
+  margin: 8px 0 14px 0;
+}
+
+.pill-note-global {
+  display: none;
+}
+
+.cta button {
+  width: 100%;
+  background: var(--brand);
+  border: 0;
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  font-weight: 600;
+  color: var(--brand-ink);
+  font-size: .95rem;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.25);
+}
+
+/* Payment app logos */
+.paymarks {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  margin: 12px 0;
+}
+
+.paymarks img {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.mark {
+  min-width: 64px;
+  height: 32px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  padding: 2px 6px;
+}
+
+.tiny {
+  display: block;
+  margin-top: 6px;
+  color: #111;
+  font-size: .85rem;
+  text-align: center;
+}
+
+/* Sticky donation tab */
+.donation-tab {
+  position: fixed;
+  left: 16px;
+  bottom: 0;
+  box-sizing: border-box;
+  width: clamp(160px,22vw,300px);
+  background: #000;
+  color: #fff;
+  border-style: solid;
+  border-color: var(--brand);
+  border-width: 1px 1px 0 1px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem .75rem;
+  font-weight: 600;
+  font-size: clamp(.72rem,1.8vw,.9rem);
+  letter-spacing: .35em;
+  border-radius: 5px 5px 0 0;
+  z-index: 59;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  white-space: nowrap;
+}
+
+.donation-tab .zap-img {
+  height: 18px;
+  width: auto;
+  display: block;
+}
+
+.donation.open + .donation-tab {
+  display: none;
+}
+
+/* ============================
+   CONTENT SECTIONS (distinct backgrounds)
+   ============================ */
+main section {
+  padding: 3rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+#model { background: var(--bg-model); }
+#action { background: var(--bg-action); }
+#about { background: var(--bg-about); }
+#why { background: var(--bg-why); }
+
+/* ============================
+   FOOTER
+   ============================ */
+footer {
+  background: var(--bg-header);
+  color: #ddd;
+  padding: 2rem 1rem;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-columns > div {
+  min-width: 200px;
+  flex: 1;
+}
+
+.footer-columns ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-columns li {
+  margin: .5rem 0;
+}
+
+.footer-columns h4 {
+  font-weight: 600;
+}
+
+.brand .logo-placeholder {
+  width: 120px;
+  max-width: 36vw;
+  height: 28px;
+  border: 1px dashed rgba(255,255,255,.35);
+  border-radius: var(--radius);
+  display: inline-block;
+}
+
+@media(min-width:768px) {
+  .newsletter-heading {
+    white-space: nowrap;
+    font-size: clamp(1rem,1.2vw,1.25rem);
+  }
+}
