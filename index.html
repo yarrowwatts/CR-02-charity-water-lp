@@ -311,16 +311,3 @@
   </script>
 </body>
 </html>
-      const heroEl = document.querySelector('.hero');
-      const heroSrc = heroEl?.getAttribute('data-local-hero') || '4891_Ethiopia_2019_CG-.jpg';
-      testImg.src = heroSrc;
-      testImg.onload = () => { heroEl?.style.setProperty('--hero-url', `url('${heroSrc}')`); }
-    })();
-
-    // Close hamburger when resizing to desktop
-    window.addEventListener('resize', () => {
-      if (window.innerWidth >= 900) { header.classList.remove('open'); }
-    });
-  </script>
-</body>
-</html>
