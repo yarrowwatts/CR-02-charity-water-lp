@@ -122,11 +122,20 @@
       margin-right: auto;
     }
     .headline {
+      /* Center-justify the headline so all lines are the same width */
+      /* This is a beginner-friendly way using text-align and a fixed width */
+      text-align: center;           /* Center the text */
+      width: 320px;                 /* Set a fixed width for even line breaks */
+      max-width: 90vw;              /* Responsive on small screens */
+      margin-left: auto;            /* Center the block itself */
+      margin-right: auto;
+      display: block;
       font-family: "Proxima Nova", "Helvetica Neue", Arial, sans-serif;
       font-weight: 800;
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-size: clamp(2.1rem, 5vw, 3.2rem);
       line-height: 1.08;
-      margin: 0.4em 0 0.7em 0;
+      margin-top: 0.4em;
+      margin-bottom: 0.7em;
       letter-spacing: -0.01em;
     }
     .impact {
