@@ -17,7 +17,7 @@
   <header class="site-header" id="header">
     <div class="bar">
       <a class="brand" href="#">
-        <img class="logo-img" src="" data-local="charitywater_logo_horizontal_WhiteText.png" alt="charity: water logo" />
+        <img class="logo-img" src="img/charitywater_logo_horizontal_WhiteText.png" alt="charity: water logo" />
       </a>
       <nav class="nav-links">
         <a class="caps" href="#model">100% MODEL</a>
@@ -42,9 +42,11 @@
       </nav>
       <div class="bar-right">
         <button class="hamburger" id="burger"><span class="lines"></span></button>
+        <!-- Give Clean Water button with waterdrop icon instead of emoji -->
         <a class="donate-btn" href="#" id="openExpressTop" aria-label="Give Clean 💧">
           <span class="btn-text"><span>Give</span><span>Clean</span></span>
-          <span class="icon" aria-hidden="true">💧</span>
+          <!-- Use SVG waterdrop icon, add margin for spacing -->
+          <img class="icon waterdrop-icon" src="img/waterdrop.svg" alt="" aria-hidden="true" />
         </a>
       </div>
     </div>
@@ -67,7 +69,8 @@
     </div>
   </header>
 
-  <section class="hero" data-local-hero="4891_Ethiopia_2019_CG-.jpg">
+  <!-- Hero section: center text, left-align container, add top padding -->
+  <section class="hero" style="--hero-url: url('img/hero_image.jpg');">
     <div class="hero-inner">
       <div class="hero-copy">
         <h1 class="headline">Water should be clear,<br/>so should your impact.</h1>
@@ -103,18 +106,17 @@
         <button id="giveBtn" class="caps">Give Clean Water</button>
       </div>
       <div class="paymarks" aria-hidden="true">
-        <div class="mark"><img data-local="mark-sample01_2x.png" alt="Apple Pay"></div>
-        <div class="mark"><img data-local="unnamed.jpg" alt="Google Pay"></div>
-        <div class="mark"><img data-local="638a60cc0646340438bd00e5_dGv49TTPMgM7wq6GhLttQFYSn3BBJMmidWJ4phV6_-c.png" alt="Venmo"></div>
-        <div class="mark"><img data-local="App_Icon.png" alt="Cash App"></div>
+        <div class="mark"><img src="img/applepay_icon.png" alt="Apple Pay"></div>
+        <div class="mark"><img src="img/gpay_icon.png" alt="Google Pay"></div>
+        <div class="mark"><img src="img/venmo_icon.png" alt="Venmo"></div>
+        <div class="mark"><img src="img/cashapp_icon.png" alt="Cash App"></div>
       </div>
       <small class="tiny">100% of your gift funds clean water projects.</small>
     </div>
   </aside>
+  <!-- Donation tab: replace emoji with lightning icon image, center text -->
   <button class="donation-tab" id="donationTab" aria-label="Open express donation">
-    <span class="zap-emoji" aria-hidden="true">⚡</span>
-    <!-- To use your lightning image instead of the emoji, unhide the <img> below and hide the .zap-emoji via CSS -->
-    <img class="zap-img" src="" data-local="lightning.png" alt="" hidden/>
+    <img class="zap-img" src="img/lightning_icon.png" alt="" />
     <span class="caps">Donate Fast</span>
   </button>
 
