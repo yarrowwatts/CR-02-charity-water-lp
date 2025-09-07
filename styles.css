@@ -182,6 +182,9 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      /* Add horizontal padding for mobile so content doesn't touch the edge */
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     /* Container for newsletter content */
@@ -192,6 +195,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      /* Add horizontal padding for extra safety on mobile */
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+    @media (max-width: 500px) {
+      .newsletter-section {
+        padding-left: 10vw;
+        padding-right: 10vw;
+      }
+      .newsletter-inner {
+        padding-left: 15px;
+        padding-right: 15px;
+        max-width: 95%;
+      }
+      .newsletter-form {
+        max-width: 100%;
+      }
     }
 
     /* Newsletter heading: bold, yellow, one line on desktop */
@@ -267,7 +287,7 @@
     /* ============================
        DONATION POPUP + STICKY TAB
        ============================ */
-    .donation{position:fixed;left:18px;bottom:16px;width:min(92vw,380px);background:#fff;color:#111;border:1px solid #111;border-radius:var(--radius);box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.35s ease;z-index:60}
+    .donation{position:fixed;left:18px;bottom:0;width:min(92vw,380px);background:#fff;color:#111;border:1px solid #111;border-radius:var(--radius);box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.35s ease;z-index:60}
     .donation.open{opacity:1;pointer-events:auto;transform:translateY(0)}
 
     /* Header strip per reference (black bar) */
@@ -299,13 +319,41 @@
 
     .tiny{display:block;margin-top:6px;color:#111;font-size:.85rem;text-align:center}
 
-    /* Sticky donation tab: full-width, no bottom gap, yellow */
-    .donation-tab{position:fixed;left:16px;bottom:0;box-sizing:border-box;width:clamp(160px,22vw,300px);background:#000;color:#fff;border-style:solid;border-color:var(--brand);border-width:1px 1px 0 1px;display:flex;justify-content:center;align-items:center;gap:.5rem;padding:.55rem .75rem;font-weight:600;font-size:clamp(.72rem,1.8vw,.9rem);letter-spacing:.35em;border-radius:5px 5px 0 0;z-index:59;box-shadow:0 4px 16px rgba(0,0,0,.25);white-space:nowrap}
-    .donation-tab .zap-img{height:18px;width:auto;display:block}
-    .donation-tab .zap-img{height:18px;width:auto;display:block}
-    .donation-tab .zap-img{height:16px;width:auto;display:block}
-    .donation-tab .zap-img{height:18px;width:auto;display:block}
-    .donation.open + .donation-tab{display:none}
+    /* Sticky donation tab: make it larger and more prominent */
+    .donation-tab {
+      position: fixed;
+      left: 18px;
+      bottom: 0;
+      box-sizing: border-box;
+      width: min(92vw, 380px); /* Match donation box width */
+      background: #000;
+      color: #fff;
+      border-style: solid;
+      border-color: var(--brand);
+      border-width: 2px 2px 0 2px; /* Thicker border */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem; /* More space between icon and text */
+      padding: 1.2rem 4rem; /* More space above/below and left/right */
+      font-weight: 700;
+      font-size: clamp(1.1rem, 2.5vw, 1.35rem); /* Larger text */
+      letter-spacing: .35em;
+      border-radius: 8px 8px 0 0; /* Slightly larger radius */
+      z-index: 59;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      white-space: nowrap;
+    }
+    .donation-tab .zap-img {
+      height: 28px;
+      width: auto;
+      display: block;
+    }
+
+    /* Hide the tab when the donation popup is open */
+    .donation.open + .donation-tab {
+      display: none;
+    }
 
     /* ============================
        CONTENT SECTIONS (distinct backgrounds)
@@ -330,10 +378,9 @@
     .footer-inner {
       max-width: 1100px;
       margin: 0 auto;
-      /* Use flex for simple columns */
       display: flex;
       flex-direction: column;
-      align-items: center; /* Center columns and text */
+      align-items: center;
       gap: 2rem;
     }
 
@@ -342,12 +389,19 @@
       flex-wrap: wrap;
       gap: 2.5rem;
       width: 100%;
-      justify-content: center; /* Center columns */
+      justify-content: center; /* Center all columns as a group */
+      align-items: flex-start;
+      margin-left: auto;
+      margin-right: auto;
+      /* Prevent columns from spreading too wide on large screens */
+      max-width: 900px;
     }
 
     .footer-col {
       min-width: 160px;
       margin-bottom: 1.5rem;
+      /* Center text in each column for beginners */
+      text-align: center;
     }
 
     .footer-columns ul {
