@@ -1,47 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Charity Water Landing Page</title>
+  <!-- STUDENT INFO (for instructor; not rendered)
+       Name: Yarrow Watts
+       Course: Global Career Accelerator - Part 1 (SAO 294, Fall 2025)
+       Instructor: Lynette Williams
+       Date: 2025-09-06
+       Assignment: Build charity: water landing page [Customer Persona: Alex] -->
+  <meta name="student" content="Name=Yarrow Watts; Course=Global Career Accelerator - Part 1 (SAO 294, Fall 2025); Instructor=Lynette Williams; Date=2025-09-06">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>charity: water — clear water donations</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
-
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
-
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
+  <header class="site-header" id="header">
+    <div class="bar">
+      <a class="brand" href="#">
+        <img class="logo-img" src="" data-local="charitywater_logo_horizontal_WhiteText.png" alt="charity: water logo" />
+      </a>
+      <nav class="nav-links">
+        <a class="caps" href="#model">100% MODEL</a>
+        <div class="has-dd">
+          <button class="dd-toggle"><span class="label">TAKE ACTION</span><span class="caret" aria-hidden="true">▾</span></button>
+          <div class="dd-menu" aria-label="Take Action submenu">
+            <a href="#">Join The Spring</a>
+            <a href="#">Fundraise</a>
+            <a href="#">Corporate Partners</a>
+          </div>
         </div>
-    </section>
+        <div class="has-dd">
+          <button class="dd-toggle"><span class="label">ABOUT US</span><span class="caret" aria-hidden="true">▾</span></button>
+          <div class="dd-menu" aria-label="About Us submenu">
+            <a href="#">Our Story</a>
+            <a href="#">Financials</a>
+            <a href="#">Team</a>
+          </div>
+        </div>
+        <a class="caps" href="#why">WHY WATER?</a>
+        <a href="#signin">SIGN IN</a>
+      </nav>
+      <div class="bar-right">
+        <button class="hamburger" id="burger"><span class="lines"></span></button>
+        <a class="donate-btn" href="#" id="openExpressTop" aria-label="Give Clean 💧">
+          <span class="btn-text"><span>Give</span><span>Clean</span></span>
+          <span class="icon" aria-hidden="true">💧</span>
+        </a>
+      </div>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a class="caps" href="#model">100% MODEL</a>
+      <button type="button" class="m-dd-toggle caps"><span class="label">Take Action</span><span class="caret" aria-hidden="true">▾</span></button>
+      <div class="m-dd-menu">
+        <a href="#">Join The Spring</a>
+        <a href="#">Fundraise</a>
+        <a href="#">Corporate Partners</a>
+      </div>
+      <button type="button" class="m-dd-toggle caps"><span class="label">About Us</span><span class="caret" aria-hidden="true">▾</span></button>
+      <div class="m-dd-menu">
+        <a href="#">Our Story</a>
+        <a href="#">Financials</a>
+        <a href="#">Team</a>
+      </div>
+      <a class="caps" href="#why">WHY WATER?</a>
+      <button type="button" class="mobile-signin caps" onclick="location.href='#signin'">Sign In</button>
+    </div>
+  </header>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
-        <a href="#" class="donate-button">Donate Now</a>
-    </section>
+  <section class="hero" data-local-hero="4891_Ethiopia_2019_CG-.jpg">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1 class="headline">Water should be clear,<br/>so should your impact.</h1>
+        <div class="divider" aria-hidden="true"></div>
+        <p class="impact"><strong>100% of every dollar you give</strong> funds clean water projects with results you can actually <strong>see, track and verify.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-section">
+    <div class="newsletter-inner">
+      <div class="newsletter-card">
+        <div class="newsletter-heading caps">Get proof of our impact delivered to your inbox.</div>
+        <form class="newsletter" id="newsletter" onsubmit="event.preventDefault(); alert('Thanks! Check your inbox for confirmation.');">
+          <input type="email" placeholder="you@example.com" required />
+          <button type="submit" class="caps">Sign me up</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <aside class="donation" id="donation" aria-live="polite">
+    <div class="donation-head caps"><span class="head-center"><span class="zap-emoji" aria-hidden="true">⚡</span><img class="zap-img" src="" data-local="lightning.png" alt=""/> <span>Express Donation</span></span><button class="close" id="closeDonation" aria-label="Close">×</button></div>
+    <div class="body">
+      <div class="pills" role="group" aria-label="Quick amounts">
+        <div class="pill-wrap"><button type="button" class="pill caps" data-amt="10" aria-pressed="true">$10</button></div>
+        <div class="pill-wrap"><button type="button" class="pill caps" data-amt="15" aria-pressed="false">$15</button></div>
+        <div class="pill-wrap"><button type="button" class="pill caps" data-amt="20" aria-pressed="false">$20</button></div>
+        <div class="pill-wrap"><button type="button" class="pill caps" data-amt="50" aria-pressed="false">$50</button></div>
+      </div>
+      <div class="pill-note-global" id="pillNote" aria-live="polite" style="text-align:center;font-size:.85rem;color:#111;margin:4px 0 12px"></div>
+      <div class="cta">
+        <button id="giveBtn" class="caps">Give Clean Water</button>
+      </div>
+      <div class="paymarks" aria-hidden="true">
+        <div class="mark"><img data-local="mark-sample01_2x.png" alt="Apple Pay"></div>
+        <div class="mark"><img data-local="unnamed.jpg" alt="Google Pay"></div>
+        <div class="mark"><img data-local="638a60cc0646340438bd00e5_dGv49TTPMgM7wq6GhLttQFYSn3BBJMmidWJ4phV6_-c.png" alt="Venmo"></div>
+        <div class="mark"><img data-local="App_Icon.png" alt="Cash App"></div>
+      </div>
+      <small class="tiny">100% of your gift funds clean water projects.</small>
+    </div>
+  </aside>
+  <button class="donation-tab" id="donationTab" aria-label="Open express donation">
+    <span class="zap-emoji" aria-hidden="true">⚡</span>
+    <!-- To use your lightning image instead of the emoji, unhide the <img> below and hide the .zap-emoji via CSS -->
+    <img class="zap-img" src="" data-local="lightning.png" alt="" hidden/>
+    <span class="caps">Donate Fast</span>
+  </button>
+
+  <main>
+    <section id="model"><h2>Section One</h2><p>Placeholder content here. Add image/text blocks.</p></section>
+    <section id="action"><h2>Section Two</h2><p>Placeholder content here.</p></section>
+    <section id="about"><h2>Section Three</h2><p>Placeholder content here.</p></section>
+    <section id="why"><h2>Section Four</h2><p>Placeholder content here.</p></section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-columns">
+        <div>
+          <h4>About</h4>
+          <ul><li>Our Story</li><li>Financials</li><li>Team</li></ul>
+        </div>
+        <div>
+          <h4>Get Involved</h4>
+          <ul><li>Fundraise</li><li>Donate</li><li>Events</li></ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul><li>Blog</li><li>Help Center</li><li>Contact</li></ul>
+        </div>
+      </div>
+      <p>© charity: water. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const burger=document.getElementById('burger');
+    const header=document.getElementById('header');
+    const mobile=document.getElementById('mobileMenu');
+    burger.addEventListener('click',()=>{header.classList.toggle('open');document.querySelectorAll('.m-dd-menu').forEach(m=>m.style.display='none');});
+
+    // mobile dropdown toggles
+    document.querySelectorAll('.m-dd-toggle').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const m=btn.nextElementSibling; if(!m) return; m.style.display=(m.style.display==='block')?'none':'block';
+      });
+    });
+
+    const donation=document.getElementById('donation');
+    const donationTab=document.getElementById('donationTab');
+    const closeDonation=document.getElementById('closeDonation');
+    const openTop=document.getElementById('openExpressTop');
+    const newsletterCard=document.querySelector('.newsletter-card');
+
+    function toggleDonation(show){
+      const willOpen= show ?? !donation.classList.contains('open');
+      donation.classList.toggle('open',willOpen);
+      document.body.classList.toggle('donation-open',willOpen);
+      updateNewsletterShift();
+    }
+
+    [openTop, donationTab].forEach(btn=> btn && btn.addEventListener('click',e=>{e.preventDefault();toggleDonation(true)}));
+    closeDonation.addEventListener('click',()=>toggleDonation(false));
+
+    // Auto-open after 2.5s on first load
+    window.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>toggleDonation(true),2500)});
+
+    const pills=[...document.querySelectorAll('.pill')];
+    let current=10;
+    const noteEl=document.getElementById('pillNote');
+    function setActive(p){
+      pills.forEach(x=>x.setAttribute('aria-pressed','false'));
+      p.setAttribute('aria-pressed','true');
+      current=Number(p.dataset.amt);
+      const map={10:'≈ 1 person gets clean water',15:'≈ 2 people get clean water',20:'≈ 3 people get clean water',50:'≈ 6 people get clean water'};
+      if(noteEl){ noteEl.textContent = map[current] || `≈ ${Math.max(1,Math.round(current/40))} people get clean water`; }
+    }
+    pills.forEach(p=>p.addEventListener('click',()=>setActive(p)));
+    // initialize note for default selection
+    setActive(document.querySelector('.pill[aria-pressed="true"]'));
+
+    function rectsOverlap(a,b){return !(a.right<b.left||a.left>b.right||a.bottom<b.top||a.top>b.bottom)}
+    function updateNewsletterShift(){
+      if(!donation.classList.contains('open')){document.body.classList.remove('donation-overlap');return;}
+      const n=document.querySelector('.newsletter-card');
+      if(!n) return;
+      const nr=n.getBoundingClientRect();
+      const dr=donation.getBoundingClientRect();
+      if(rectsOverlap(nr,dr)) document.body.classList.add('donation-overlap'); else document.body.classList.remove('donation-overlap');
+    }
+    window.addEventListener('resize',updateNewsletterShift);
+
+    document.getElementById('giveBtn').addEventListener('click',()=>{alert(`Thank you for giving $${current}.`)})
+    // Load local images with graceful fallbacks
+    (function(){
+      document.querySelectorAll('img[data-local]').forEach(img=>{
+        const src = img.getAttribute('data-local');
+        img.src = src;
+        img.onerror = ()=>{
+          if(img.classList.contains('logo-img')){
+            // show placeholder if logo missing
+            const ph = document.createElement('span');
+            ph.className = 'logo-placeholder';
+            img.replaceWith(ph);
+          } else {
+            img.closest('.mark')?.remove();
+          }
+        };
+      });
+      // hero fallback if local image is missing
+      const testImg = new Image();
+      testImg.onload = ()=>{};
+      testImg.onerror = ()=>{
+        const hero = document.querySelector('.hero');
+        if(hero){ hero.style.setProperty('--hero-url', "url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1974&auto=format&fit=crop')"); }
+      };
+      const heroEl = document.querySelector('.hero');
+      const heroSrc = heroEl?.getAttribute('data-local-hero') || '4891_Ethiopia_2019_CG-.jpg';
+      testImg.src = heroSrc;
+      testImg.onload = ()=>{ heroEl?.style.setProperty('--hero-url', `url('${heroSrc}')`); }
+    })();
+    // Close hamburger when resizing to desktop
+    window.addEventListener('resize',()=>{ if(window.innerWidth>=900){ header.classList.remove('open'); }});
+  </script>
 </body>
 </html>
