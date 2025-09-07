@@ -481,6 +481,60 @@
   }
 }
 
+/* Make hero section text centered and responsive */
+.hero-copy {
+  text-align: center; /* Center the text */
+  margin: 0 auto;
+  max-width: 500px;
+  /* Already has box-sizing and padding inline, but add here for clarity */
+  box-sizing: border-box;
+  padding: 0 12px;
+}
+
+.headline {
+  font-size: 2.2em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+/* Newsletter section responsive styles */
+.newsletter-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Add some padding for spacing */
+  padding: 16px 0;
+}
+
+.newsletter-card {
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+  padding: 0 12px;
+  margin: 0 auto;
+}
+
+/* Responsive styles for mobile screens */
+@media (max-width: 600px) {
+  .hero-copy {
+    /* Make sure text fits on small screens */
+    font-size: 1em;
+    max-width: 100%;
+    padding: 0 8px;
+  }
+  .headline {
+    font-size: 1.3em;
+  }
+  .newsletter-inner {
+    flex-direction: column; /* Stack vertically */
+    padding: 8px 0;
+  }
+  .newsletter-card {
+    max-width: 100%;
+    padding: 0 8px;
+  }
+}
+
 /* ============================
    GLOBAL FONTS
    ============================ */
