@@ -302,15 +302,15 @@
           }
         };
       });
-      // hero fallback if local image is missing
-      const testImg = new Image();
-      testImg.onload = () => { };
-      testImg.onerror = () => {
-        const hero = document.querySelector('.hero');
-        if (hero) {
-          hero.style.setProperty('--hero-url', "url('https://images.unsplash.com/photo-1509099836639-18ba1795216d?q=80&w=1974&auto=format&fit=crop')");
-        }
-      };
+    })();
+
+    // Close hamburger when resizing to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 900) { header.classList.remove('open'); }
+    });
+  </script>
+</body>
+</html>
       const heroEl = document.querySelector('.hero');
       const heroSrc = heroEl?.getAttribute('data-local-hero') || '4891_Ethiopia_2019_CG-.jpg';
       testImg.src = heroSrc;
