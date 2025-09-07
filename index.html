@@ -85,7 +85,13 @@
 
   <section class="hero" style="--hero-url: url('img/hero_image.jpg');">
     <div class="hero-inner">
-      <div class="hero-copy">
+      <!-- 
+        Added a style to make sure the hero text doesn't go off the page on small screens.
+        max-width: 100% keeps the content inside the screen.
+        box-sizing: border-box includes padding in the width.
+        padding adds space on the left and right.
+      -->
+      <div class="hero-copy" style="max-width: 100%; box-sizing: border-box; padding: 0 12px;">
         <h1 class="headline">Water should<br>be clear,<br/>so should<br>your impact.</h1>
         <!-- Simple 1px horizontal rule, 100px wide, for beginners -->
         <hr style="border: none; border-top: 1px solid #ffffff; width: 100px; margin: 18px auto;" />
@@ -98,7 +104,13 @@
 
   <section class="newsletter-section">
     <div class="newsletter-inner">
-      <div class="newsletter-card">
+      <!-- 
+        Added a style to make sure the newsletter card doesn't go off the page on small screens.
+        max-width: 100% keeps the content inside the screen.
+        box-sizing: border-box includes padding in the width.
+        padding adds space on the left and right.
+      -->
+      <div class="newsletter-card" style="max-width: 100%; box-sizing: border-box; padding: 0 12px;">
         <div class="newsletter-heading caps">Get proof of our impact delivered to your inbox.</div>
         <form class="newsletter" id="newsletter" onsubmit="event.preventDefault(); alert('Thanks! Check your inbox for confirmation.');">
           <input type="email" placeholder="you@example.com" required />
